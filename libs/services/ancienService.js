@@ -5,11 +5,12 @@ var logger = require('log4js').getLogger(MODULE_NAME);
 var db = require('../db');
 
 module.exports.getAnciens = function* () {
-	return "From ancienService";
+	var anciens = yield db.Ancien.findAll();
+    return anciens;
 }
 
 module.exports.getAncien = function* (id) {
-	console.log(id);
-	var ancien = yield db.sequelize.models.Ancien.find(Number(id));
+	logger.debug('getAncien : getiing ancien with id ' + id);
+	var ancien = yield db.Ancien.find(Number(id));
 	return ancien;
 }
