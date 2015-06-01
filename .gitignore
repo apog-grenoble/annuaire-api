@@ -1,5 +1,4 @@
 node_modules
-conf
 *.log
 .idea
 *.iml
