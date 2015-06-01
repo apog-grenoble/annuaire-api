@@ -1,0 +1,28 @@
+{
+  "name": "annuaire-api",
+  "version": "1.0.0",
+  "description": "REST service for APOG annuaire",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --harmony index.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "ancien",
+    "polytech",
+    "annuaire",
+    "rest",
+    "api",
+    "koajs"
+  ],
+  "author": "APOG",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^0.19.1",
+    "koa-router": "^4.3.2",
+    "log4js": "^0.6.25",
+    "mysql": "^2.6.2",
+    "nconf": "^0.7.1",
+    "sequelize": "^2.0.6"
+  }
+}
