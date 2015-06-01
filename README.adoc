@@ -1,0 +1,10 @@
+= APOG Annuaire API
+
+This project is the api part of APOG annuaire web service.
+
+== Development setup
+TODO
+
+== Tests
+TODO
+
