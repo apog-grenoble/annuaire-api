@@ -15,5 +15,8 @@ module.exports.sequelize = sequelize;
 sequelize.import(__dirname+'/../models/pays');
 module.exports.Pays = sequelize.models.Pays;
 
+sequelize.import(__dirname+'/../models/filiere');
+module.exports.Filiere = sequelize.models.Filiere;
+
 sequelize.import(__dirname+'/../models/ancien');
 module.exports.Ancien = sequelize.models.Ancien;

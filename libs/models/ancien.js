@@ -34,7 +34,13 @@ module.exports = function(sequelize, DataTypes) {
         login: DataTypes.STRING,
         password: DataTypes.STRING,
 
-        //filiere: TODO,
+        filiere_id: {
+           type: DataTypes.INTEGER,
+           references: {
+            model: sequelize.models.Filiere,
+            key: 'filiere_id',
+           }
+        },
         annee: DataTypes.STRING,
         //civilite: TODO,
 
@@ -47,6 +53,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
             //Ancien.hasMany(models.Cotisation);
             Ancien.hasOne(models.Pays, { foreignKey: 'pays_id' });
+            Ancien.hasOne(models.Filiere, { foreignKey: 'filiere_id' });
         },
         tableName: 'anciens',
         timestamps: false
