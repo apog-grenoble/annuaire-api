@@ -12,6 +12,8 @@ var Sequelize = require('sequelize');
 var sequelize = new Sequelize(uriToDB);
 module.exports.sequelize = sequelize;
 
+sequelize.import(__dirname+'/../models/pays');
+module.exports.Pays = sequelize.models.Pays;
+
 sequelize.import(__dirname+'/../models/ancien');
 module.exports.Ancien = sequelize.models.Ancien;
-

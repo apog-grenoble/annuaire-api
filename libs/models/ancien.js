@@ -6,8 +6,8 @@
 module.exports = function(sequelize, DataTypes) {
     var Ancien = sequelize.define('Ancien', {
 
-        ancien_id: {type: DataTypes.INTEGER,
-            primaryKey: true},
+        id: {type: DataTypes.INTEGER,
+            primaryKey: true, field: "ancien_id"},
 
         nom: DataTypes.STRING,
         nom_marital: DataTypes.STRING,
@@ -16,7 +16,13 @@ module.exports = function(sequelize, DataTypes) {
         adresse: DataTypes.STRING,
         code_postal: DataTypes.STRING,
         ville: DataTypes.STRING,
-        //pay: DataTypes.STRING,
+        pays_id: {
+           type: DataTypes.INTEGER,
+           references: {
+            model: sequelize.models.Pays,
+            key: 'pays_id',
+           }
+        },
 
         telephone_perso: DataTypes.STRING,
         mobile_perso: DataTypes.STRING,
@@ -29,16 +35,18 @@ module.exports = function(sequelize, DataTypes) {
         password: DataTypes.STRING,
 
         //filiere: TODO,
+        annee: DataTypes.STRING,
         //civilite: TODO,
 
         mail_send: DataTypes.BOOLEAN,
-        nb_modif: DataTypes.INTEGER ,
+        nb_modif: DataTypes.INTEGER,
 
         //entreprise: TODO,
 
     }, {
         associate: function(models) {
-            //Ancien.hasOne(models.Cotisation);
+            //Ancien.hasMany(models.Cotisation);
+            Ancien.hasOne(models.Pays, { foreignKey: 'pays_id' });
         },
         tableName: 'anciens',
         timestamps: false
