@@ -42,7 +42,14 @@ module.exports = function(sequelize, DataTypes) {
            }
         },
         annee: DataTypes.STRING,
-        //civilite: TODO,
+        civility: {
+           type: DataTypes.INTEGER,
+           field: "civil_id",
+           references: {
+            model: sequelize.models.Civility,
+            key: 'civil_id',
+           }
+        },
 
         mail_send: DataTypes.BOOLEAN,
         nb_modif: DataTypes.INTEGER,
@@ -54,6 +61,7 @@ module.exports = function(sequelize, DataTypes) {
             //Ancien.hasMany(models.Cotisation);
             Ancien.hasOne(models.Pays, { foreignKey: 'pays_id' });
             Ancien.hasOne(models.Filiere, { foreignKey: 'filiere_id' });
+            Ancien.hasOne(models.Civility, { foreignKey: 'civil_id' });
         },
         tableName: 'anciens',
         timestamps: false

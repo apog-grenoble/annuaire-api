@@ -18,5 +18,8 @@ module.exports.Pays = sequelize.models.Pays;
 sequelize.import(__dirname+'/../models/filiere');
 module.exports.Filiere = sequelize.models.Filiere;
 
+sequelize.import(__dirname+'/../models/civility');
+module.exports.Civility = sequelize.models.Civility;
+
 sequelize.import(__dirname+'/../models/ancien');
 module.exports.Ancien = sequelize.models.Ancien;
