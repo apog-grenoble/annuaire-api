@@ -23,3 +23,6 @@ module.exports.Civility = sequelize.models.Civility;
 
 sequelize.import(__dirname+'/../models/ancien');
 module.exports.Ancien = sequelize.models.Ancien;
+
+sequelize.import(__dirname+'/../models/subscription');
+module.exports.Subscription = sequelize.models.Subscription;

@@ -13,13 +13,15 @@ var db = require('./libs/db');
 // Getting controllers
 
 var ancienController = require('./libs/controllers/ancienController');
-
+var subscriptionController = require('./libs/controllers/subscriptionController');
 
 // Routing controllers
 app.use(router(app));
 
 app.get('/anciens', ancienController.getAnciens);
 app.get('/anciens/:id', ancienController.getAncien);
+
+app.get('/cotisations', subscriptionController.getSubscriptions);
 
 
 //app.use(function *(){

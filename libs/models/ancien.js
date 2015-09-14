@@ -58,7 +58,7 @@ module.exports = function(sequelize, DataTypes) {
 
     }, {
         associate: function(models) {
-            //Ancien.hasMany(models.Cotisation);
+            Ancien.hasMany(models.Cotisation, { foreignKey: 'id' });
             Ancien.hasOne(models.Pays, { foreignKey: 'pays_id' });
             Ancien.hasOne(models.Filiere, { foreignKey: 'filiere_id' });
             Ancien.hasOne(models.Civility, { foreignKey: 'civil_id' });
