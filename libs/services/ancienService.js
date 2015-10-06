@@ -14,3 +14,14 @@ module.exports.getAncien = function* (id) {
 	var ancien = yield db.Ancien.find(Number(id));
 	return ancien;
 }
+
+module.exports.getAncienByUsername = function* (username) {
+	logger.debug('getAncienByUsername : geting ancien with login ' + username);
+	var ancien = yield db.Ancien.findOne({ where: { login: username }});
+	return ancien;
+}
+
+module.exports.updateAncien = function* (ancien) {
+	var ancien = yield db.Ancien.update(ancien);
+	return ancien;
+}
