@@ -18,7 +18,10 @@
   "author": "APOG",
   "license": "ISC",
   "dependencies": {
+    "basic-auth": "^1.0.3",
+    "bcryptjs": "^2.3.0",
     "koa": "^0.19.1",
+    "koa-generic-session": "^1.9.2",
     "koa-router": "^4.3.2",
     "log4js": "^0.6.25",
     "mysql": "^2.6.2",
