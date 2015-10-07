@@ -1,5 +1,5 @@
 'use strict';
-var MODULE_NAME = 'AccessController';
+var MODULE_NAME = 'AuthenticationFilter';
 var logger = require('log4js').getLogger(MODULE_NAME);
 
 var auth = require('basic-auth');
@@ -9,7 +9,7 @@ var authenticationService = require('../services/authenticationService');
 module.exports.isAuthenticated = function * (next) {
 	var currentUser = auth(this.request);
 	if (currentUser) {
-		if (!this.session || !this.session.username || !this.session.authenticated || (this.session.username != currentUser.name)) {
+		if (!this.session || !this.session.ancien || !this.session.authenticated || (this.session.ancien.login != currentUser.name)) {
 			var authenticated = yield authenticationService.authenticate(currentUser.name, currentUser.pass, this.session);
 
 			if (!authenticated) {
@@ -21,7 +21,7 @@ module.exports.isAuthenticated = function * (next) {
 			}
 		}
 	} else {
-		// TODO Ask for HTTP basic
+		// Ask for HTTP basic
 		this.status = 401;
 		this.set('WWW-Authenticate', 'Basic realm="/"')
 		return;
@@ -29,12 +29,13 @@ module.exports.isAuthenticated = function * (next) {
 	yield next;
 }
 
-
-module.exports.hasUserAccess = function * (next) {
-	
-}
-
 module.exports.hasAdminAccess = function * (next) {
-
+	if (!this.session.ancien.is_admin) {
+		logger.warn("Tried to access admin only resource");
+		this.status = 403;
+		this.body = "Access forbidden";
+		return;
+	}
+	yield next;
 }
 

@@ -11,8 +11,7 @@ module.exports.authenticate = function * (username, password, session) {
 
 	if (ancien) {
 		if (isValid(ancien, password)) {
-			// TODO
-			session.username = username;
+			session.ancien = ancien;
 			session.authenticated = true;
 			return true;
 		}		

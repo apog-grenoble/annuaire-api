@@ -54,6 +54,8 @@ module.exports = function(sequelize, DataTypes) {
         mail_send: DataTypes.BOOLEAN,
         nb_modif: DataTypes.INTEGER,
 
+        is_admin: DataTypes.BOOLEAN,
+
         //entreprise: TODO,
 
     }, {

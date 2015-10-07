@@ -18,18 +18,20 @@ var db = require('./libs/db');
 // Getting controllers
 
 var ancienController = require('./libs/controllers/ancienController');
+var ancienFilter = require('./libs/filters/ancienFilter');
+
 var subscriptionController = require('./libs/controllers/subscriptionController');
-var accessController = require('./libs/controllers/accessController');
+
+
+var authenticationFilter = require('./libs/filters/authenticationFilter');
 
 // Routing controllers
 app.use(router(app));
 
-app.get('/anciens', ancienController.getAnciens);
-app.get('/anciens/:id', ancienController.getAncien);
+app.get('/anciens', authenticationFilter.isAuthenticated, authenticationFilter.hasAdminAccess, ancienController.getAnciens);
+app.get('/anciens/:id', authenticationFilter.isAuthenticated, ancienFilter.getAncien, ancienController.getAncien);
 
-app.get('/cotisations', subscriptionController.getSubscriptions);
-
-app.get('/test', accessController.isAuthenticated ,ancienController.getAnciens);
+app.get('/cotisations', authenticationFilter.isAuthenticated, authenticationFilter.hasAdminAccess, subscriptionController.getSubscriptions);
 
 
 //app.use(function *(){
