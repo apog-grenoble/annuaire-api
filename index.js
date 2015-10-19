@@ -2,12 +2,17 @@ require('log4js').configure('conf/log4js.json');
 var koa = require('koa');
 var router = require('koa-router');
 var session = require("koa-generic-session");
+var koaBodyParser = require("koa-body");
 
 var app = module.exports = koa();
 
 // Session
 app.keys = ["keys", "keykeys"]
 app.use(session())
+app.use(koaBodyParser({
+	formLimit: "20mb",
+	jsonLimit: "20mb",
+}))
 
 var nconf = require('nconf');
 nconf.file('app', 'conf/app.json');
@@ -30,6 +35,7 @@ app.use(router(app));
 
 app.get('/anciens', authenticationFilter.isAuthenticated, authenticationFilter.hasAdminAccess, ancienController.getAnciens);
 app.get('/anciens/:id', authenticationFilter.isAuthenticated, ancienFilter.getAncien, ancienController.getAncien);
+app.post('/anciens/:id/password', authenticationFilter.isAuthenticated, ancienFilter.changePassword, ancienController.changePassword);
 
 app.get('/cotisations', authenticationFilter.isAuthenticated, authenticationFilter.hasAdminAccess, subscriptionController.getSubscriptions);
 

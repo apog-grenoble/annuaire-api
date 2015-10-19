@@ -52,6 +52,8 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         mail_send: DataTypes.BOOLEAN,
+
+        //TODO : last_modified date
         nb_modif: DataTypes.INTEGER,
 
         is_admin: DataTypes.BOOLEAN,

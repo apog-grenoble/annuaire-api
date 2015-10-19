@@ -22,6 +22,6 @@ module.exports.getAncienByUsername = function* (username) {
 }
 
 module.exports.updateAncien = function* (ancien) {
-	var ancien = yield db.Ancien.update(ancien);
+	ancien.save();
 	return ancien;
 }
