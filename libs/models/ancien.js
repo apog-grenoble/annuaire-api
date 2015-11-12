@@ -53,7 +53,10 @@ module.exports = function(sequelize, DataTypes) {
 
         mail_send: DataTypes.BOOLEAN,
 
-        //TODO : last_modified date
+        last_modified: {
+            type: DataTypes.DATE,
+            field: "derniere_modif",
+        },
         nb_modif: DataTypes.INTEGER,
 
         is_admin: DataTypes.BOOLEAN,

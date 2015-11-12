@@ -7,12 +7,12 @@ var koaBodyParser = require("koa-body");
 var app = module.exports = koa();
 
 // Session
-app.keys = ["keys", "keykeys"]
-app.use(session())
+app.keys = ["keys", "keykeys"];
+app.use(session());
 app.use(koaBodyParser({
 	formLimit: "20mb",
 	jsonLimit: "20mb",
-}))
+}));
 
 var nconf = require('nconf');
 nconf.file('app', 'conf/app.json');

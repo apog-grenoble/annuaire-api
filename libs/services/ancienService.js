@@ -11,7 +11,7 @@ module.exports.getAnciens = function* () {
 
 module.exports.getAncien = function* (id) {
 	logger.debug('getAncien : getiing ancien with id ' + id);
-	var ancien = yield db.Ancien.find(Number(id));
+	var ancien = yield db.Ancien.findById(Number(id));
 	return ancien;
 }
 
@@ -22,6 +22,7 @@ module.exports.getAncienByUsername = function* (username) {
 }
 
 module.exports.updateAncien = function* (ancien) {
+	ancien.last_modified = new Date();
 	ancien.save();
 	return ancien;
 }
